@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri Virtual Photography — M Sahki Wisham Fauzan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sahki_style.css">
+</head>
+<body class="sahki_body">
+  <div id="sahki_scroll_progress" class="sahki_scroll_progress"></div>
+  <div id="sahki_cursor_ring" class="sahki_cursor_ring"></div>
+  
+
+  <header id="sahki_header" class="sahki_header">
+    <nav class="sahki_nav_container" aria-label="Primary Navigation">
+      <ul class="sahki_nav_list">
+        <li><a href="index.html" class="sahki_nav_link">Home</a></li>
+<li><a href="about.html" class="sahki_nav_link">About</a></li>
+<li><a href="skills.html" class="sahki_nav_link">Skills</a></li>
+<li><a href="galeri.html" class="sahki_nav_link sahki_active">Galeri</a></li>
+
+        <li class="sahki_dropdown">
+          <button type="button" class="sahki_nav_link">Sistem Operasi ▾</button>
+          <div class="sahki_dropdown_menu">
+            <a href="so-tugas1.html" class="sahki_dropdown_item">
+              <strong>Tugas 1 — Disk Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SSTF, SCAN, C-SCAN, LOOK</span>
+            </a>
+            <a href="so-tugas2.html" class="sahki_dropdown_item">
+              <strong>Tugas 2 — CPU Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SJF, SRT &amp; Round Robin</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="contact.html" class="sahki_nav_link">Kontak</a></li>
+      </ul>
+      <button type="button" id="sahki_hamburger" class="sahki_hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div id="sahki_mobile_menu" class="sahki_mobile_menu">
+      <a href="index.html" class="sahki_mobile_link">Home</a>
+      <a href="about.html" class="sahki_mobile_link">About</a>
+      <a href="skills.html" class="sahki_mobile_link">Skills</a>
+      <a href="galeri.html" class="sahki_mobile_link">Galeri Virtual Photography</a>
+      <a href="so-tugas1.html" class="sahki_mobile_link">SO — Tugas 1 (Disk Scheduling)</a>
+      <a href="so-tugas2.html" class="sahki_mobile_link">SO — Tugas 2 (CPU Scheduling)</a>
+      <a href="contact.html" class="sahki_mobile_link">Kontak</a>
+    </div>
+  </header>
+
+  <main class="sahki_main">
+    
+<section class="sahki_section_block">
+  <div class="sahki_section_head">
+    <div>
+      <p class="sahki_kicker">03 / Forza Horizon 6 Archive</p>
+      <h1 class="sahki_page_title">Virtual Photography</h1>
+    </div>
+    <p style="font-size:0.86rem;color:var(--sahki-muted);">Arahkan kursor ke foto untuk memunculkan warna penuh • Klik untuk memperbesar</p>
+  </div>
+
+  <div class="sahki_filter_bar">
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter sahki_active" data-cat="all">Semua</button>
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter" data-cat="drift">Drift</button>
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter" data-cat="porsche">Porsche 918 / GT3</button>
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter" data-cat="jdm">JDM</button>
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter" data-cat="fuji">Fuji</button>
+    <button type="button" class="sahki_filter_btn sahki_galeri_filter" data-cat="lainnya">Lainnya</button>
+  </div>
+
+  <div id="sahki_galeri_grid" class="sahki_galeri_grid"></div>
+</section>
+
+<div id="sahki_lightbox" class="sahki_lightbox" role="dialog" aria-modal="true">
+  <div class="sahki_lightbox_box">
+    <img id="sahki_lb_img" src="" alt="Preview">
+    <div class="sahki_lightbox_bar">
+      <div>
+        <h3 id="sahki_lb_title" class="sahki_galeri_title"></h3>
+        <p id="sahki_lb_sub" class="sahki_galeri_sub"></p>
+      </div>
+      <button type="button" id="sahki_lb_close" class="sahki_btn_sharp">Tutup ✕</button>
+    </div>
+  </div>
+</div>
+
+  </main>
+
+  <footer id="sahki_footer" class="sahki_footer">
+    <div class="sahki_footer_inner">
+      <span>M Sahki Wisham Fauzan — NIM 2503010033 • Kelas B</span>
+      <span>Teknik Informatika — Universitas Perjuangan &copy; 2026</span>
+      <a href="index.html" class="sahki_footer_link">Home</a>
+    </div>
+  </footer>
+
+  <script src="js/sahki_data.js"></script>
+  <script src="js/sahki_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — M Sahki Wisham Fauzan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sahki_style.css">
+</head>
+<body class="sahki_body">
+  <div id="sahki_scroll_progress" class="sahki_scroll_progress"></div>
+  <div id="sahki_cursor_ring" class="sahki_cursor_ring"></div>
+  
+
+  <header id="sahki_header" class="sahki_header">
+    <nav class="sahki_nav_container" aria-label="Primary Navigation">
+      <ul class="sahki_nav_list">
+        <li><a href="index.html" class="sahki_nav_link">Home</a></li>
+<li><a href="about.html" class="sahki_nav_link sahki_active">About</a></li>
+<li><a href="skills.html" class="sahki_nav_link">Skills</a></li>
+<li><a href="galeri.html" class="sahki_nav_link">Galeri</a></li>
+
+        <li class="sahki_dropdown">
+          <button type="button" class="sahki_nav_link">Sistem Operasi ▾</button>
+          <div class="sahki_dropdown_menu">
+            <a href="so-tugas1.html" class="sahki_dropdown_item">
+              <strong>Tugas 1 — Disk Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SSTF, SCAN, C-SCAN, LOOK</span>
+            </a>
+            <a href="so-tugas2.html" class="sahki_dropdown_item">
+              <strong>Tugas 2 — CPU Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SJF, SRT &amp; Round Robin</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="contact.html" class="sahki_nav_link">Kontak</a></li>
+      </ul>
+      <button type="button" id="sahki_hamburger" class="sahki_hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div id="sahki_mobile_menu" class="sahki_mobile_menu">
+      <a href="index.html" class="sahki_mobile_link">Home</a>
+      <a href="about.html" class="sahki_mobile_link">About</a>
+      <a href="skills.html" class="sahki_mobile_link">Skills</a>
+      <a href="galeri.html" class="sahki_mobile_link">Galeri Virtual Photography</a>
+      <a href="so-tugas1.html" class="sahki_mobile_link">SO — Tugas 1 (Disk Scheduling)</a>
+      <a href="so-tugas2.html" class="sahki_mobile_link">SO — Tugas 2 (CPU Scheduling)</a>
+      <a href="contact.html" class="sahki_mobile_link">Kontak</a>
+    </div>
+  </header>
+
+  <main class="sahki_main">
+    
+<section class="sahki_section_block">
+  <div class="sahki_section_head">
+    <div>
+      <p class="sahki_kicker">01 / Profile &amp; Academic Identity</p>
+      <h1 class="sahki_page_title">About Me</h1>
+    </div>
+  </div>
+
+  <div class="sahki_grid_2">
+    <div class="sahki_card">
+      <p class="sahki_kicker">Identitas Mahasiswa</p>
+      <h2 class="sahki_card_title">M Sahki Wisham Fauzan</h2>
+      <p style="font-size:0.92rem;color:var(--sahki-muted);margin-bottom:1.25rem;">
+        Saya suka melihat sesuatu bekerja dari dalam: dari cara CPU membagi waktu antar proses sampai cara sebuah halaman web terasa ringan dan rapi. Di luar layar kode, saya mengejar momen yang pas di dunia virtual, mulai dari sudut kamera, cahaya senja, sampai mobil yang berhenti tepat di bingkainya.
+      </p>
+      <div class="sahki_table_wrap">
+        <table class="sahki_table">
+          <tr><th>Nama Lengkap</th><td>M Sahki Wisham Fauzan</td></tr>
+          <tr><th>Institusi</th><td>Universitas Perjuangan Tasikmalaya</td></tr>
+          <tr><th>Fokus Minat</th><td>Web Development, OS Algorithms, Virtual Photography</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sahki_card">
+      <p class="sahki_kicker">Pendidikan &amp; Eksplorasi</p>
+      <h2 class="sahki_card_title">Riwayat &amp; Proyek Akademik</h2>
+      <div style="display:flex;flex-direction:column;gap:1.25rem;margin-top:1rem;">
+        <div style="border-left:2px solid var(--sahki-ink);padding-left:1rem;">
+          <p class="sahki_kicker" style="margin-bottom:0.2rem;">2025 — Sekarang</p>
+          <strong>S1 Teknik Informatika — Universitas Perjuangan</strong>
+          <p style="font-size:0.86rem;color:var(--sahki-muted);">Mempelajari Pemrograman Web, Sistem Operasi, Struktur Data (C++/Python), Logika Matematika, dan Jaringan Komputer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer id="sahki_footer" class="sahki_footer">
+    <div class="sahki_footer_inner">
+      <span>M Sahki Wisham Fauzan — NIM 2503010033 • Kelas B</span>
+      <span>Teknik Informatika — Universitas Perjuangan &copy; 2026</span>
+      <a href="index.html" class="sahki_footer_link">Home</a>
+    </div>
+  </footer>
+
+  <script src="js/sahki_data.js"></script>
+  <script src="js/sahki_script.js"></script>
+</body>
+</html>

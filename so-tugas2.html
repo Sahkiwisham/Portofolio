@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SO Tugas 2 — CPU Scheduling — M Sahki Wisham Fauzan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sahki_style.css">
+</head>
+<body class="sahki_body">
+  <div id="sahki_scroll_progress" class="sahki_scroll_progress"></div>
+  <div id="sahki_cursor_ring" class="sahki_cursor_ring"></div>
+  
+
+  <header id="sahki_header" class="sahki_header">
+    <nav class="sahki_nav_container" aria-label="Primary Navigation">
+      <ul class="sahki_nav_list">
+        <li><a href="index.html" class="sahki_nav_link">Home</a></li>
+<li><a href="about.html" class="sahki_nav_link">About</a></li>
+<li><a href="skills.html" class="sahki_nav_link">Skills</a></li>
+<li><a href="galeri.html" class="sahki_nav_link">Galeri</a></li>
+
+        <li class="sahki_dropdown">
+          <button type="button" class="sahki_nav_link sahki_active">Sistem Operasi ▾</button>
+          <div class="sahki_dropdown_menu">
+            <a href="so-tugas1.html" class="sahki_dropdown_item">
+              <strong>Tugas 1 — Disk Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SSTF, SCAN, C-SCAN, LOOK</span>
+            </a>
+            <a href="so-tugas2.html" class="sahki_dropdown_item">
+              <strong>Tugas 2 — CPU Scheduling</strong>
+              <span class="sahki_dropdown_sub">FCFS, SJF, SRT &amp; Round Robin</span>
+            </a>
+          </div>
+        </li>
+        <li><a href="contact.html" class="sahki_nav_link">Kontak</a></li>
+      </ul>
+      <button type="button" id="sahki_hamburger" class="sahki_hamburger" aria-label="Toggle Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <div id="sahki_mobile_menu" class="sahki_mobile_menu">
+      <a href="index.html" class="sahki_mobile_link">Home</a>
+      <a href="about.html" class="sahki_mobile_link">About</a>
+      <a href="skills.html" class="sahki_mobile_link">Skills</a>
+      <a href="galeri.html" class="sahki_mobile_link">Galeri Virtual Photography</a>
+      <a href="so-tugas1.html" class="sahki_mobile_link">SO — Tugas 1 (Disk Scheduling)</a>
+      <a href="so-tugas2.html" class="sahki_mobile_link">SO — Tugas 2 (CPU Scheduling)</a>
+      <a href="contact.html" class="sahki_mobile_link">Kontak</a>
+    </div>
+  </header>
+
+  <main class="sahki_main">
+    
+<section class="sahki_section_block">
+  <div class="sahki_section_head">
+    <div>
+      <p class="sahki_kicker">05 / Sistem Operasi — Tugas 2</p>
+      <h1 class="sahki_page_title">CPU Scheduling Simulator</h1>
+    </div>
+    <p style="font-family:var(--sahki-font-mono);font-size:0.78rem;">4 Processes • Gantt Chart &amp; TAT Analysis</p>
+  </div>
+
+  <div class="sahki_card">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <label for="sahki_cpu_algo" class="sahki_label" style="margin:0;">Pilih Algoritma Penjadwalan CPU:</label>
+      <select id="sahki_cpu_algo" class="sahki_select" style="max-width:280px;">
+        <option value="SRT" selected>SRT (Shortest Remaining Time)</option>
+        <option value="SJF">SJF (Shortest Job First Non-Preemptive)</option>
+        <option value="FCFS">FCFS (First Come First Served)</option>
+        <option value="RR3">Round Robin (Quantum = 3 ms)</option>
+      </select>
+    </div>
+
+    <p class="sahki_kicker" style="margin-top:1rem;">Visualisasi Gantt Chart Eksekusi</p>
+    <div id="sahki_cpu_gantt" class="sahki_gantt_bar"></div>
+    <p id="sahki_cpu_summary" style="font-family:var(--sahki-font-mono);font-size:0.82rem;margin-top:0.75rem;"></p>
+  </div>
+
+  <div class="sahki_table_wrap">
+    <table class="sahki_table">
+      <thead>
+        <tr>
+          <th>Proses</th>
+          <th>Arrival Time (AT)</th>
+          <th>Burst Time (BT)</th>
+          <th>Finish Time (FT)</th>
+          <th>Turnaround Time (TAT)</th>
+          <th>Waiting Time (WT)</th>
+        </tr>
+      </thead>
+      <tbody id="sahki_cpu_tbody"></tbody>
+    </table>
+  </div>
+
+  <div id="sahki_extra_assignments" data-target="so2"></div>
+</section>
+
+  </main>
+
+  <footer id="sahki_footer" class="sahki_footer">
+    <div class="sahki_footer_inner">
+      <span>M Sahki Wisham Fauzan — NIM 2503010033 • Kelas B</span>
+      <span>Teknik Informatika — Universitas Perjuangan &copy; 2026</span>
+      <a href="index.html" class="sahki_footer_link">Home</a>
+    </div>
+  </footer>
+
+  <script src="js/sahki_data.js"></script>
+  <script src="js/sahki_script.js"></script>
+</body>
+</html>
