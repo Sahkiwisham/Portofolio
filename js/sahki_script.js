@@ -561,7 +561,7 @@ function sahkiInitContactForm() {
     }
 
     alertBox.style.display = "block";
-    alertBox.textContent = `Terima kasih, ${nama}. Pesan Anda telah dicatat untuk M Sahki Wisham Fauzan (2503010033).`;
+    alertBox.textContent = "M Sahki Wisham Fauzan.";
     form.reset();
   });
 }

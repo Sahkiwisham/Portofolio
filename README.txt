@@ -1,7 +1,6 @@
 PROJECT UTS PEMROGRAMAN WEB & SISTEM OPERASI
 Nama  : M Sahki Wisham Fauzan
-NIM   : 2503010033
-Kelas : B — Teknik Informatika, Universitas Perjuangan Tasikmalaya
+Program Studi : Teknik Informatika, Universitas Perjuangan Tasikmalaya
 
 STRUKTUR FOLDER:
 - index.html        : Halaman Utama (Layar intro "Hi, im Samm" + Split-Screen Hero)
