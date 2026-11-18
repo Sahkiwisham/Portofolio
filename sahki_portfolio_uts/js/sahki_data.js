@@ -1,6 +1,4 @@
-/* ==========================================================================
-   SAHKI PORTFOLIO — STRUCTURED DATA STORE (PHOTOS, SKILLS, SO ASSIGNMENTS)
-   ========================================================================== */
+
 const SAHKI_PORTFOLIO_DATA = {
   student: {
     name: "M Sahki Wisham Fauzan",

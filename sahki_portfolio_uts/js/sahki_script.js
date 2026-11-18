@@ -1,6 +1,4 @@
-/* ==========================================================================
-   SAHKI PORTFOLIO — INTERACTIVE LOGIC, ANIMATIONS & OS SIMULATORS
-   ========================================================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
   sahkiInitScrollProgress();
   sahkiInitTrailingCursor();
@@ -15,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   sahkiInitContactForm();
 });
 
-/* 1. Scroll Progress */
+
 function sahkiInitScrollProgress() {
   const bar = document.getElementById("sahki_scroll_progress");
   if (!bar) return;
@@ -26,7 +24,7 @@ function sahkiInitScrollProgress() {
   });
 }
 
-/* 2. Clean Trailing Cursor Ring (No Pill Text) */
+
 function sahkiInitTrailingCursor() {
   const ring = document.getElementById("sahki_cursor_ring");
   if (!ring || window.matchMedia("(hover: none)").matches) return;
@@ -58,7 +56,7 @@ function sahkiInitTrailingCursor() {
   animateRing();
 }
 
-/* 3. Mobile Hamburger Menu */
+
 function sahkiInitMobileMenu() {
   const btn = document.getElementById("sahki_hamburger");
   const menu = document.getElementById("sahki_mobile_menu");
@@ -68,7 +66,7 @@ function sahkiInitMobileMenu() {
   });
 }
 
-/* 4. Welcome Intro ("Hi, im Samm") */
+
 function sahkiInitWelcomeScreen() {
   const welcome = document.getElementById("sahki_welcome_screen");
   const hero = document.getElementById("sahki_hero_section");
@@ -117,7 +115,7 @@ function sahkiInitWelcomeScreen() {
   }
 }
 
-/* 5. Staggered Animated Hero Showcase Ticker */
+
 function sahkiInitTicker() {
   const card = document.getElementById("sahki_hero_ticker");
   if (!card || typeof SAHKI_PORTFOLIO_DATA === "undefined") return;
@@ -188,7 +186,7 @@ function sahkiInitTicker() {
   startAuto();
 }
 
-/* Visual ticker tanpa foto: lintasan head (Disk) & Gantt Chart (CPU) */
+
 function sahkiTickerVisual(kind) {
   if (kind === "disk") {
     const t = [100, 110, 145, 160, 175, 188, 95, 76, 55, 40, 12];
@@ -210,7 +208,7 @@ function sahkiTickerVisual(kind) {
   return `<svg viewBox="0 0 600 244" preserveAspectRatio="xMidYMid meet" role="img"><text class="sahki_viz_lbl" x="30" y="62">SRT · GANTT CHART</text>${bars}${ticks}<text class="sahki_viz_lbl" x="30" y="214">AVG TAT 13.00 · AVG WT 6.50</text></svg>`;
 }
 
-/* 6. Virtual Photography Gallery & Lightbox */
+
 function sahkiInitGallery() {
   const grid = document.getElementById("sahki_galeri_grid");
   if (!grid || typeof SAHKI_PORTFOLIO_DATA === "undefined") return;
@@ -272,7 +270,7 @@ function sahkiInitGallery() {
   renderPhotos("all");
 }
 
-/* 7. Skills Interactive Filter */
+
 function sahkiInitSkills() {
   const grid = document.getElementById("sahki_skills_grid");
   if (!grid || typeof SAHKI_PORTFOLIO_DATA === "undefined") return;
@@ -310,21 +308,42 @@ function sahkiInitSkills() {
   renderSkills("all");
 }
 
-/* 8. Sistem Operasi Tugas 1 — Disk Scheduling Canvas & Simulator */
+
 function sahkiInitSoTugas1() {
   const canvas = document.getElementById("sahki_disk_canvas");
   const select = document.getElementById("sahki_disk_algo");
   const stepBox = document.getElementById("sahki_disk_steps");
   if (!canvas || !select) return;
 
-  const sequences = {
-    FCFS:   { seq: [100, 145, 76, 188, 12, 95, 160, 40, 110, 175, 55], total: 963 },
-    SSTF:   { seq: [100, 95, 110, 76, 55, 40, 12, 145, 160, 175, 188], total: 264 },
-    SCAN:   { seq: [100, 110, 145, 160, 175, 188, 199, 95, 76, 55, 40, 12], total: 286 },
-    CSCAN:  { seq: [100, 110, 145, 160, 175, 188, 199, 0, 12, 40, 55, 76, 95], total: 393 },
-    LOOK:   { seq: [100, 110, 145, 160, 175, 188, 95, 76, 55, 40, 12], total: 264 },
-    CLOOK:  { seq: [100, 110, 145, 160, 175, 188, 12, 40, 55, 76, 95], total: 347 }
-  };
+  const QUEUE = [145, 76, 188, 12, 95, 160, 40, 110, 175, 55];
+  const HEAD = 100;
+  const LAST_TRACK = 199;
+  function buildDisk(algo) {
+    const sorted = [...QUEUE].sort((x, y) => x - y);
+    const up = sorted.filter((t) => t >= HEAD);
+    const down = sorted.filter((t) => t < HEAD).reverse();
+    let order;
+    if (algo === "FCFS") order = [...QUEUE];
+    else if (algo === "SSTF") {
+      const pending = [...QUEUE];
+      let cur = HEAD;
+      order = [];
+      while (pending.length) {
+        let k = 0;
+        pending.forEach((t, j) => { if (Math.abs(t - cur) < Math.abs(pending[k] - cur)) k = j; });
+        cur = pending.splice(k, 1)[0];
+        order.push(cur);
+      }
+    } else if (algo === "SCAN") order = [...up, LAST_TRACK, ...down];
+    else if (algo === "CSCAN") order = [...up, LAST_TRACK, 0, ...down.slice().reverse()];
+    else if (algo === "LOOK") order = [...up, ...down];
+    else order = [...up, ...down.slice().reverse()];
+    const seq = [HEAD, ...order];
+    const total = seq.slice(1).reduce((sum, t, i) => sum + Math.abs(t - seq[i]), 0);
+    return { seq, total };
+  }
+  const sequences = {};
+  ["FCFS", "SSTF", "SCAN", "CSCAN", "LOOK", "CLOOK"].forEach((k) => { sequences[k] = buildDisk(k); });
 
   function drawChart(algoKey) {
     const data = sequences[algoKey] || sequences.LOOK;
@@ -344,8 +363,6 @@ function sahkiInitSoTugas1() {
     const plotH = h - padY * 2;
 
     ctx.clearRect(0, 0, w, h);
-
-    // Track axis ticks
     ctx.strokeStyle = "#E4E4E7";
     ctx.fillStyle = "#52525B";
     ctx.font = "11px 'JetBrains Mono', monospace";
@@ -357,8 +374,6 @@ function sahkiInitSoTugas1() {
       ctx.stroke();
       ctx.fillText(String(t), x - 10, 18);
     });
-
-    // Head trajectory
     ctx.strokeStyle = "#111111";
     ctx.lineWidth = 2;
     ctx.beginPath();
@@ -369,8 +384,6 @@ function sahkiInitSoTugas1() {
       else ctx.lineTo(x, y);
     });
     ctx.stroke();
-
-    // Points & labels
     seq.forEach((track, i) => {
       const x = padX + (track / 199) * plotW;
       const y = padY + (i / (seq.length - 1)) * plotH;
@@ -401,7 +414,7 @@ function sahkiInitSoTugas1() {
   drawChart(select.value);
 }
 
-/* 9. Sistem Operasi Tugas 2 — CPU Scheduling Table & Gantt Chart */
+
 function sahkiInitSoTugas2() {
   const select = document.getElementById("sahki_cpu_algo");
   const tbody = document.getElementById("sahki_cpu_tbody");
@@ -409,79 +422,78 @@ function sahkiInitSoTugas2() {
   const summary = document.getElementById("sahki_cpu_summary");
   if (!select || !tbody || !gantt) return;
 
-  const datasets = {
-    FCFS: {
-      rows: [
-        { p: "P1", at: 0, bt: 8, ft: 8, tat: 8, wt: 0 },
-        { p: "P2", at: 1, bt: 4, ft: 12, tat: 11, wt: 7 },
-        { p: "P3", at: 2, bt: 9, ft: 21, tat: 19, wt: 10 },
-        { p: "P4", at: 3, bt: 5, ft: 26, tat: 23, wt: 18 }
-      ],
-      gantt: [
-        { label: "P1", dur: 8, color: "#111111" },
-        { label: "P2", dur: 4, color: "#3F3F46" },
-        { label: "P3", dur: 9, color: "#52525B" },
-        { label: "P4", dur: 5, color: "#71717A" }
-      ],
-      avgTat: "15.25",
-      avgWt: "8.75"
-    },
-    SJF: {
-      rows: [
-        { p: "P1", at: 0, bt: 8, ft: 8, tat: 8, wt: 0 },
-        { p: "P2", at: 1, bt: 4, ft: 12, tat: 11, wt: 7 },
-        { p: "P4", at: 3, bt: 5, ft: 17, tat: 14, wt: 9 },
-        { p: "P3", at: 2, bt: 9, ft: 26, tat: 24, wt: 15 }
-      ],
-      gantt: [
-        { label: "P1", dur: 8, color: "#111111" },
-        { label: "P2", dur: 4, color: "#3F3F46" },
-        { label: "P4", dur: 5, color: "#71717A" },
-        { label: "P3", dur: 9, color: "#52525B" }
-      ],
-      avgTat: "14.25",
-      avgWt: "7.75"
-    },
-    SRT: {
-      rows: [
-        { p: "P1", at: 0, bt: 8, ft: 17, tat: 17, wt: 9 },
-        { p: "P2", at: 1, bt: 4, ft: 5, tat: 4, wt: 0 },
-        { p: "P3", at: 2, bt: 9, ft: 26, tat: 24, wt: 15 },
-        { p: "P4", at: 3, bt: 5, ft: 10, tat: 7, wt: 2 }
-      ],
-      gantt: [
-        { label: "P1", dur: 1, color: "#111111" },
-        { label: "P2", dur: 4, color: "#3F3F46" },
-        { label: "P4", dur: 5, color: "#71717A" },
-        { label: "P1", dur: 7, color: "#111111" },
-        { label: "P3", dur: 9, color: "#52525B" }
-      ],
-      avgTat: "13.00",
-      avgWt: "6.50"
-    },
-    RR3: {
-      rows: [
-        { p: "P1", at: 0, bt: 8, ft: 22, tat: 22, wt: 14 },
-        { p: "P2", at: 1, bt: 4, ft: 13, tat: 12, wt: 8 },
-        { p: "P3", at: 2, bt: 9, ft: 26, tat: 24, wt: 15 },
-        { p: "P4", at: 3, bt: 5, ft: 24, tat: 21, wt: 16 }
-      ],
-      gantt: [
-        { label: "P1", dur: 3, color: "#111111" },
-        { label: "P2", dur: 3, color: "#3F3F46" },
-        { label: "P3", dur: 3, color: "#52525B" },
-        { label: "P4", dur: 3, color: "#71717A" },
-        { label: "P2", dur: 1, color: "#3F3F46" },
-        { label: "P1", dur: 3, color: "#111111" },
-        { label: "P3", dur: 3, color: "#52525B" },
-        { label: "P4", dur: 2, color: "#71717A" },
-        { label: "P1", dur: 2, color: "#111111" },
-        { label: "P3", dur: 3, color: "#52525B" }
-      ],
-      avgTat: "19.75",
-      avgWt: "13.25"
+  const procs = [
+    { p: "P1", at: 0, bt: 8 },
+    { p: "P2", at: 1, bt: 4 },
+    { p: "P3", at: 2, bt: 9 },
+    { p: "P4", at: 3, bt: 5 }
+  ];
+  const colors = ["#111111", "#3F3F46", "#52525B", "#71717A"];
+
+  function simulate(key) {
+    const n = procs.length;
+    const rem = procs.map((x) => x.bt);
+    const fin = Array(n).fill(0);
+    const segs = [];
+    let t = 0;
+    let done = 0;
+    const push = (i, s, e) => {
+      const last = segs[segs.length - 1];
+      if (last && last.i === i && last.e === s) last.e = e;
+      else segs.push({ i, s, e });
+    };
+
+    if (key.startsWith("RR")) {
+      const q = Number(key.slice(2));
+      const queue = [];
+      let next = 0;
+      const admit = () => { while (next < n && procs[next].at <= t) queue.push(next++); };
+      admit();
+      while (done < n) {
+        if (!queue.length) { t = procs[next].at; admit(); continue; }
+        const i = queue.shift();
+        const run = Math.min(q, rem[i]);
+        push(i, t, t + run);
+        t += run;
+        rem[i] -= run;
+        admit();
+        if (rem[i] > 0) queue.push(i);
+        else { fin[i] = t; done++; }
+      }
+    } else {
+      while (done < n) {
+        const ready = procs.map((_, i) => i).filter((i) => rem[i] > 0 && procs[i].at <= t);
+        if (!ready.length) { t++; continue; }
+        const pick = (score) => ready.reduce((a, b) => (score(b) < score(a) ? b : a));
+        if (key === "SRT") {
+          const i = pick((j) => rem[j]);
+          push(i, t, t + 1);
+          t++;
+          if (--rem[i] === 0) { fin[i] = t; done++; }
+          continue;
+        }
+        const i = key === "FCFS" ? ready[0]
+          : key === "SJF" ? pick((j) => procs[j].bt)
+          : pick((j) => -(t - procs[j].at + procs[j].bt) / procs[j].bt);
+        push(i, t, t + rem[i]);
+        t += rem[i];
+        rem[i] = 0;
+        fin[i] = t;
+        done++;
+      }
     }
-  };
+
+    const rows = procs.map((x, i) => ({ p: x.p, at: x.at, bt: x.bt, ft: fin[i], tat: fin[i] - x.at, wt: fin[i] - x.at - x.bt }));
+    const avg = (f) => (rows.reduce((sum, r) => sum + r[f], 0) / rows.length).toFixed(2);
+    return {
+      rows,
+      gantt: segs.map((g) => ({ label: procs[g.i].p, dur: g.e - g.s, color: colors[g.i] })),
+      avgTat: avg("tat"),
+      avgWt: avg("wt")
+    };
+  }
+  const datasets = {};
+  ["FCFS", "SJF", "SRT", "HPRN", "RR3", "RR5"].forEach((k) => { datasets[k] = simulate(k); });
 
   function renderCpu(key) {
     const data = datasets[key] || datasets.SRT;
@@ -513,7 +525,7 @@ function sahkiInitSoTugas2() {
   renderCpu(select.value);
 }
 
-/* 10. Extra Assignments Renderer */
+
 function sahkiInitExtraAssignments() {
   const box = document.getElementById("sahki_extra_assignments");
   if (!box || typeof SAHKI_PORTFOLIO_DATA === "undefined") return;
@@ -530,7 +542,7 @@ function sahkiInitExtraAssignments() {
   `).join("");
 }
 
-/* 11. Contact Form Validation */
+
 function sahkiInitContactForm() {
   const form = document.getElementById("sahki_contact_form");
   const alertBox = document.getElementById("sahki_contact_alert");
